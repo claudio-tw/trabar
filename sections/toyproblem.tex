@@ -1,0 +1,90 @@
+\section{Toy problem}
+
+With the notation introduced above,
+let
+$
+\givenFamily
+$ 
+be the family of 
+univariate normal distributions
+of variance $1$,
+namely
+\begin{equation*}
+\givenFamily 
+= 
+\left\lbrace
+\gaussian{m}{1}:
+\,
+m\in \R
+\right\rbrace.
+\end{equation*}
+Let 
+$
+\familiyDistribution
+$
+be
+the distribution over $\givenFamily$
+obtained by letting 
+the mean $m$ of $\gaussian{m}{1}$ 
+follow the univariate standard normal distribution 
+$\gaussian{0}{1}$. 
+This is a simple bayesian statistics framework:
+$t$ is the distribution of the normal random variable
+$T \sim \gaussian{m}{1}$, 
+and the prior $\pi$ over the parameter $m$ is $\gaussian{0}{1}$.
+
+We define 
+$\statisticsSpace = \R$ 
+and 
+$\statistics(t) = \int_{\R} u\,t(du) = \Expectation[T], $ 
+where 
+$T \sim \gaussian{m}{1}$.
+
+In this setup,
+$\coupling[t]$
+is the distribution over $\R\squared$
+defined by the formula
+$
+\coupling[t](\varphi)
+=
+\Expectation[
+\varphi(N + m, N)
+],
+$
+where 
+$\varphi$ is an arbitrary test function over $\R\squared$,
+$m = \statistics(t)$
+and
+$N\sim\gaussian{0}{1}$. 
+[Check this claim!]
+What 
+cost function $c$ 
+are we using in the definition of 
+$\coupling[t]$?
+
+I would like to show that 
+the $\familiyDistribution$-baricentre $\baricentre$
+is the distribution over $\R\squared$
+defined by
+\begin{equation*}
+	\baricentre(\varphi)
+	=
+	\Expectation
+	\left[
+		\varphi
+		(
+		T+N,
+		N
+		)
+	\right],
+\end{equation*}
+where 
+$\varphi$ is an arbitrary test function over $\R\squared$,
+and
+$T$, $N$ are independent univariate standard normal random variables. 
+Is this true? How can we prove / disprove it? 
+What
+distance $\bariDistance$ are we using?
+
+
+

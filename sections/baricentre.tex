@@ -1,0 +1,217 @@
+\section{Problem formulation}
+
+\subsection{Framework}
+
+Let
+$\givenFamily \subset \probabilitiesOver{\R}$ 
+be a given famility of distributions on the line. 
+The subset $\givenFamily$ is assumed to be a 
+convex subset of $\probabilitiesOver{\R}$.
+Let
+$t$ 
+denote a generic distribution in the given family $\givenFamily$.
+
+Let
+$\familiyDistribution$ 
+be a probability over the $\givenFamily$. 
+
+Let
+$\statisticsSpace$ 
+be a separable metric space.
+
+Let
+$\statistics: \givenFamily \rightarrow \statisticsSpace$ 
+be a measurable map, 
+interpreted as some statistics over the given family $\givenFamily$.
+
+Let 
+$\pushforwardStat = \statistics_{\#} \familiyDistribution$
+be the pushforward of $\familiyDistribution$ via $\statistics$,
+namely 
+$\pushforwardStat$ is the probability measure on $\statisticsSpace$
+such that for any measurable $A \subset \statisticsSpace$ 
+it holds
+$\pushforwardStat(A) = \familiyDistribution (\statistics\inverse(A))$.
+
+
+We fix a non-negative continuous cost function
+$c:\R \times \statisticsSpace \mapsto \R$.
+For every $t$ in $\givenFamily$,
+we define the $c$-optimal coupling between 
+$t$ and $\pushforwardStat$ by the formula
+\begin{equation}
+\label{eq.definition_of_t_coupling}
+\coupling[t] = 
+\argmin 
+\left\lbrace
+\int c(u, x)\nu(du, dx):
+\nu \in \probabilitiesOver{\R\times \statisticsSpace},
+\nu(\cdot, \statisticsSpace) = t,
+\nu(\R, \cdot) = \pushforwardStat
+\right\rbrace.
+\end{equation}
+
+Is $\coupling[t]$ well-defined? 
+I.e. what are the assumptions such that the map 
+$
+\nu\mapsto \int c(u, x) \nu(du, dx)
+$
+achieves a minimiser over the set of 
+$
+\nu \in \probabilitiesOver{\R\times \statisticsSpace}
+$
+with
+$
+\nu(\cdot, \statisticsSpace) = t
+$
+and 
+$
+\nu(\R, \cdot) = \pushforwardStat
+$
+?
+Is this minimiser unique?
+
+
+\subsection{The baricentre problem}
+
+Let $\bariDistance$ be a distance over 
+$\probabilitiesOver{\R\times\statisticsSpace}$.
+We would like to study the minimisation of
+\begin{equation}
+\label{eq.baricentre_minimisation}
+F: 
+\baricentre 
+\mapsto
+\int_{\givenFamily} \bariDistance(\coupling[t], \baricentre) \familiyDistribution(dt),
+\,\,\,
+\baricentre \in \probabilitiesOver{\R\times\statisticsSpace},
+\end{equation}
+where
+$\coupling[t]$, 
+for $t$ in $\givenFamily$, 
+is as in equation \eqref{eq.definition_of_t_coupling}.
+
+Is the infimum
+$\inf\lbrace F(\baricentre): \, \baricentre \in \probabilitiesOver{\R\times\statisticsSpace}\rbrace$
+achieved?
+If it is, we call any minimiser of $F$ the 
+$\familiyDistribution$-baricentre.
+
+If existent, is the $\familiyDistribution$-baricentre unique?
+
+If $\baricentre$ is a $\familiyDistribution$-baricentre,
+does it hold that
+$
+\baricentre(\R, \cdot) = \pushforwardStat
+$
+?
+Let 
+$\mathcal{P}_{\pushforwardStat}$
+be the space
+of 
+$\baricentre$ in 
+$\probabilitiesOver{\R\times\statisticsSpace}$ 
+such that 
+$
+\baricentre(\R, \cdot) = \pushforwardStat
+$
+?
+Can we restrict  $F$ to $\mathcal{P}_{\pushforwardStat}$ 
+and
+study the minimisation of $F$ over $\mathcal{P}_{\pushforwardStat}$? 
+In other words, can we study the following inequality?
+\begin{equation*}
+\inf
+\lbrace 
+F(\baricentre): \, 
+\baricentre \in \probabilitiesOver{\R\times\statisticsSpace}
+\rbrace
+\,\,\,
+\leq
+\,\,\,
+\inf
+\lbrace 
+F(\baricentre): \, 
+\baricentre \in \mathcal{P}_{\pushforwardStat}
+\rbrace
+.
+\end{equation*}
+
+
+We would like to interpret any 
+$\familiyDistribution$-baricentre 
+$\baricentre$
+as follows.
+By virtue of the statistics $\statistics$,
+we attached to every $t$ in $\givenFamily$
+a space coordinate $x = S(t)$ in $\statisticsSpace$. 
+When $t\sim\familiyDistribution$, $x\sim\pushforwardStat$.
+Then, 
+the  $\familiyDistribution$-baricentre $\baricentre$
+should be the space-time distribution that represent 
+the famility $\familiyDistribution$
+of time-distributions $t$.
+We would like to investiugate to which extent 
+slicing $\baricentre$ along the space axes 
+allows us 
+to recover the $t$'s in $\givenFamily$. 
+Let 
+$\delta$ 
+be a distance on $\probabilitiesOver{\R}$.
+For $t$ in $\probabilitiesOver{\R}$,
+$\mu$ in $\probabilitiesOver{\R\times\statisticsSpace}$,
+and $\epsilon > 0$,
+define
+\begin{equation*}
+D_{\epsilon}(t, \mu)
+=
+\delta
+\left(
+\frac
+{
+\mu\left\lbrace \cdot, B_\epsilon (\statistics(t))\right\rbrace
+}
+{
+\mu\left\lbrace \R,  B_\epsilon (\statistics(t))\right\rbrace
+}
+,
+\,
+t
+\right)
+,
+\end{equation*}
+where 
+$B_\epsilon(\statistics(t))$ 
+is the ball centred at $\statistics(t)$ of radius $\epsilon$.
+Can we choose a suitable 
+$\epsilon$-dependent constant $C_\epsilon$, 
+and study the optmisation problem 
+\begin{equation}
+\label{eq.duality_minimisation}
+\inf_{
+\mu \in \mathcal{M}
+}
+\sup_{
+\epsilon >0
+}
+C_\epsilon
+\int_{\givenFamily}
+D_\epsilon (t, \mu)
+\familiyDistribution(dt),
+\end{equation}
+where 
+$\mathcal{M}$ is either 
+$\probabilitiesOver{\R\times\statisticsSpace}$
+or
+$\mathcal{P}_{\pushforwardStat}$
+?
+How does 
+the minimisation problem 
+in equation \eqref{eq.duality_minimisation}
+relate to
+the minimisation of $F$ 
+in equation \eqref{eq.baricentre_minimisation}?
+
+
+
+
